@@ -18,14 +18,19 @@
       </a>
     {%- endif -%}
 
-    <!-- navitems  -->
+
+
     <ul class="nav-list d-flex">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/shop">Shop</a>
-      <a href="/food">Food</a>
-      <a href="/reciepe">Reciepe</a>
-      <a href="/contact">Contact</a>
+
+      {%- for link in section.settings.menu.links -%}
+        {%- if link.links != blank -%}
+          <a href="{{ link.url }}">
+          {%- endif -%}
+          {{ link.title | escape }}
+        </a>
+
+      {%- endfor -%}
+
       <span class="close d-flex">
         <i class="bx bx-x"></i>
       </span>
@@ -56,6 +61,8 @@
   </div>
 </nav>
 
+
+
 {% schema %}
 
   {
@@ -66,7 +73,8 @@
         "type": "image_picker",
         "id": "logo",
         "label": "t:sections.header.settings.logo.label"
-      }, {
+      },
+      {
         "type": "range",
         "id": "logo_width",
         "min": 100,
@@ -75,6 +83,48 @@
         "default": 100,
         "unit": "t:sections.header.settings.logo_width.unit",
         "label": "t:sections.header.settings.logo_width.label"
+      },
+      {
+        "type": "select",
+        "id": "logo_position",
+        "options": [
+          {
+            "value": "top-left",
+            "label": "t:sections.header.settings.logo_position.options__2.label"
+          }, {
+            "value": "top-center",
+            "label": "t:sections.header.settings.logo_position.options__3.label"
+          }, {
+            "value": "middle-left",
+            "label": "t:sections.header.settings.logo_position.options__1.label"
+          }, {
+            "value": "middle-center",
+            "label": "t:sections.header.settings.logo_position.options__4.label"
+          }
+        ],
+        "default": "top-left",
+        "label": "t:sections.header.settings.logo_position.label"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "default": "main-menu",
+        "label": "t:sections.header.settings.menu.label"
+      }, {
+        "type": "select",
+        "id": "menu_type_desktop",
+        "options": [
+          {
+            "value": "dropdown",
+            "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
+          }, {
+            "value": "mega",
+            "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
+          }
+        ],
+        "default": "dropdown",
+        "label": "t:sections.header.settings.menu_type_desktop.label",
+        "info": "t:sections.header.settings.menu_type_desktop.info"
       }
     ]
   }
