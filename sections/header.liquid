@@ -1,66 +1,77 @@
-<nav class="navbar">
-  <!-- Container div -->
-  <div class="row d-flex container">
-    {%- if request.page_type == 'index' -%}
-      <a href="{{ routes.root_url }}" class="logo d-flex">
-      {%- endif -%}
+<link
+  rel="stylesheet"
+  href="{{ 'styles.css' | asset_url }}"
+  media="print"
+  onload="this.media='all'">
 
-      {%- if section.settings.logo != blank -%}
-        {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
-        {%- assign logo_width = section.settings.logo_width | append: 'rem' -%}
 
-        {%- assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio -%}
-        {{ section.settings.logo | image_url: width: section.settings.width | image_tag: widths: '100,200,300,400', height: logo_height, width: logo_width, alt: logo_alt }}
-      {%- else -%}
-        <span class="h2">{{ shop.name }}</span>
-      {%- endif -%}
+<noscript>{{ 'styles.css' | asset_url | stylesheet_tag }}</noscript>
+
+<header class="header">
+
+  <nav class="navbar">
+    <!-- Container div -->
+    <div class="row d-flex container">
       {%- if request.page_type == 'index' -%}
-      </a>
-    {%- endif -%}
+        <a href="{{ routes.root_url }}" class="logo d-flex">
+        {%- endif -%}
 
+        {%- if section.settings.logo != blank -%}
+          {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+          {%- assign logo_width = section.settings.logo_width | append: 'rem' -%}
 
-
-    <ul class="nav-list d-flex">
-
-      {%- for link in section.settings.menu.links -%}
-        {%- if link.links != blank -%}
-          <a href="{{ link.url }}">
-          {%- endif -%}
-          {{ link.title | escape }}
+          {%- assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio -%}
+          {{ section.settings.logo | image_url: width: section.settings.width | image_tag: widths: '100,200,300,400', height: logo_height, width: logo_width, alt: logo_alt }}
+        {%- else -%}
+          <span class="h2">{{ shop.name }}</span>
+        {%- endif -%}
+        {%- if request.page_type == 'index' -%}
         </a>
+      {%- endif -%}
 
-      {%- endfor -%}
 
-      <span class="close d-flex">
-        <i class="bx bx-x"></i>
-      </span>
-    </ul>
-    <!-- seacrch, cart and signin -->
-    <div class="col d-flex">
-      <form action="/search">
-        <input
-          type="text"
-          placeholder="Search Your ITEM HERE"
-          id="">
-        <button class="d-flex">
-          <i class="bx bx-search"></i>
-        </button>
-      </form>
 
-      <div class="cart-icon d-flex">
-        <i class="bx bx-shopping-bag"></i>
-        <span>0</span>
+      <ul class="nav-list d-flex">
+
+        {%- for link in section.settings.menu.links -%}
+          {%- if link.links != blank -%}
+            <a href="{{ link.url }}">
+            {%- endif -%}
+            {{ link.title | escape }}
+          </a>
+
+        {%- endfor -%}
+
+        <span class="close d-flex">
+          <i class="bx bx-x"></i>
+        </span>
+      </ul>
+      <!-- seacrch, cart and signin -->
+      <div class="col d-flex">
+        <form action="/search">
+          <input
+            type="text"
+            placeholder="Search Your ITEM HERE"
+            id="">
+          <button class="d-flex">
+            <i class="bx bx-search"></i>
+          </button>
+        </form>
+
+        <div class="cart-icon d-flex">
+          <i class="bx bx-shopping-bag"></i>
+          <span>0</span>
+        </div>
+        <a href="/account/login" class="btn signin">SignIn</a>
       </div>
-      <a href="/account/login" class="btn signin">SignIn</a>
-    </div>
 
-    <!-- Hamburger  -->
-    <div class="hamburger d-flex">
-      <i class="bx bx-menu"></i>
+      <!-- Hamburger  -->
+      <div class="hamburger d-flex">
+        <i class="bx bx-menu"></i>
+      </div>
     </div>
-  </div>
-</nav>
-
+  </nav>
+</header>
 
 
 {% schema %}
