@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link
+      rel="preconnect"
+      href="https://cdn.shopify.com"
+      crossorigin>
+
+    {%- if settings.favicon != blank -%}
+      <link
+        rel="icon"
+        type="image/png"
+        href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
+      <link
+        rel="preconnect"
+        href="https://fonts.shopifycdn.com"
+        crossorigin>
+    {%- endunless -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %}
+        &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %}
+        &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %}
+        &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% comment %} {% render 'meta-tags' %} {% endcomment %}
+
+    <!--=============== Favicon ===============-->
+    {% comment %} <link rel="shortcut icon"
+    href="images/favicon.ico"
+    type="image/icon" /> {% endcomment %}
+    <!--=============== Swiper CSS ===============-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" /> <script src="//cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" defer></script>
+
+
+
+    <!--=============== Boxicons CSS===============-->
+    <link href="//unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+    <!--=============== Custom StyleSheet ===============-->
+
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    {{ 'styles.css' | asset_url | stylesheet_tag }}
+    <!-- login form -->
+    {{ 'login.css' | asset_url | stylesheet_tag }}
+    <!-- service css assets-->
+    {{ 'service.css' | asset_url | stylesheet_tag }}
+    <!-- ABOUT CSS assets-->
+    {{ 'about.css' | asset_url | stylesheet_tag }}
+
+    <!-- RECiPE CSS assets-->
+    {{ 'recipe.css' | asset_url | stylesheet_tag }}
+    <!-- TESTIMONIAL CSS assets-->
+    {{ 'testtimonial.css' | asset_url | stylesheet_tag }}
+    <!-- APP CSS assets-->
+    {{ 'app.css' | asset_url | stylesheet_tag }}
+    <!-- footer assets-->
+    {{ 'footer.css' | asset_url | stylesheet_tag }}
+
+    <!--=============== Custom Javascript ===============-->
+    <script src="{{ 'main.js' | asset_url }}" defer="defer"></script>
+    <!--=============== External Library ===============-->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+
+    {{ content_for_header }}
+    <title>FDelivery</title>
+  </head>
+
+  <body>
+
+
+    <header class="header">
+
+      {% section 'header' %}
+
+
+    </header>
+    {% comment %} {%- if settings.cart_type == 'drawer' -%}
+    {%- render 'cart-drawer' -%}
+    {%- endif -%} {% endcomment %}
+
+    {% comment %} {% section 'announcement-bar' %} {% endcomment %}
+
+    <main
+      id="MainContent"
+      class="content-for-layout focus-none"
+      role="main"
+      tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+    {% comment %} {% section 'footer' %} {% endcomment %}
+  <!--=============== Services ===============-->
+
+
+    <!--=============== About ===============-->
+
+
+    <!--=============== Recipes ===============-->
+
+
+    <!--=============== Testimonials ===============-->
+
+
+    <!--=============== App ===============-->
+
+
+    <!--=============== Footer ===============-->
+
+
+    <!--=============== Swiper JS ===============-->
+
+    <!--=============== Custom JS ===============-->
+
+  </body>
+
+</html>

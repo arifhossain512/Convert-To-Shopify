@@ -1,0 +1,81 @@
+<nav class="navbar">
+  <!-- Container div -->
+  <div class="row d-flex container">
+    {%- if request.page_type == 'index' -%}
+      <a href="{{ routes.root_url }}" class="logo d-flex">
+      {%- endif -%}
+
+      {%- if section.settings.logo != blank -%}
+        {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+        {%- assign logo_width = section.settings.logo_width | append: 'rem' -%}
+
+        {%- assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio -%}
+        {{ section.settings.logo | image_url: width: section.settings.width | image_tag: widths: '100,200,300,400', height: logo_height, width: logo_width, alt: logo_alt }}
+      {%- else -%}
+        <span class="h2">{{ shop.name }}</span>
+      {%- endif -%}
+      {%- if request.page_type == 'index' -%}
+      </a>
+    {%- endif -%}
+
+    <!-- navitems  -->
+    <ul class="nav-list d-flex">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/shop">Shop</a>
+      <a href="/food">Food</a>
+      <a href="/reciepe">Reciepe</a>
+      <a href="/contact">Contact</a>
+      <span class="close d-flex">
+        <i class="bx bx-x"></i>
+      </span>
+    </ul>
+    <!-- seacrch, cart and signin -->
+    <div class="col d-flex">
+      <form action="/search">
+        <input
+          type="text"
+          placeholder="Search Your ITEM HERE"
+          id="">
+        <button class="d-flex">
+          <i class="bx bx-search"></i>
+        </button>
+      </form>
+
+      <div class="cart-icon d-flex">
+        <i class="bx bx-shopping-bag"></i>
+        <span>0</span>
+      </div>
+      <a href="/account/login" class="btn signin">SignIn</a>
+    </div>
+
+    <!-- Hamburger  -->
+    <div class="hamburger d-flex">
+      <i class="bx bx-menu"></i>
+    </div>
+  </div>
+</nav>
+
+{% schema %}
+
+  {
+    "name": "t:sections.header.name",
+    "class": "section-header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "t:sections.header.settings.logo.label"
+      }, {
+        "type": "range",
+        "id": "logo_width",
+        "min": 100,
+        "max": 400,
+        "step": 20,
+        "default": 100,
+        "unit": "t:sections.header.settings.logo_width.unit",
+        "label": "t:sections.header.settings.logo_width.label"
+      }
+    ]
+  }
+{% endschema %}
