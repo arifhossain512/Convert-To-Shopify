@@ -1,0 +1,186 @@
+.testimonials {
+    padding: 10rem 0 10rem;
+    background-color: var(--grey-color-1);
+
+    .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--row-gap, 3rem 10rem);
+        align-items: flex-start;
+
+        .card {
+            border-right: 2px solid #eaeaea;
+           
+
+            &.active {
+                border-color: var(--primary-color);
+
+                .d-flex {
+                    background-color: var(--white-color);
+                    box-shadow: var(--box-shadow);
+                }
+            }
+          
+
+            .d-flex {
+                border-radius: 1rem;
+                width: 85%;
+                padding: 1.5rem;
+                cursor: pointer;
+                &:hover{
+                    border: 1px solid var(--primary-color);
+                }
+                &:not(:last-child) {
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            .image {
+                height: 8rem;
+                width: 8rem;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 3rem;
+               
+
+                img {
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            h4 {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            span {
+                font-size: 1.5rem;
+            }
+        }
+
+        .col:last-child {
+            position: relative;
+            overflow: hidden;
+            height: 44rem;
+
+            h2 {
+                font-size: 4.5rem;
+                margin-bottom: 3rem;
+
+                span {
+                    color: var(--primary-color);
+                }
+            }
+
+            .testimonial {
+                position: absolute;
+                bottom: -80%;
+                transform: translateY(-30%);
+                transition: 0.5s;
+
+                &.active {
+                    bottom: 0%;
+                }
+
+                .d-flex {
+                    justify-content: space-between;
+                    border-bottom: 1px solid var(--grey-color);
+                    padding-bottom: 1.5rem;
+                    margin-bottom: 3rem;
+
+                    div {
+                        &:first-child {
+                            border-left: 2px solid var(--primary-color);
+                            padding-left: 1rem;
+
+                            h4 {
+                                font-size: 2rem;
+                            }
+
+                            span {
+                                font-size: 1.5rem;
+                            }
+                        }
+                    }
+
+                    .rating {
+                        span {
+                            color: var(--deep-yellow);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .testimonials {
+        --row-gap:5rem 0;
+        .row {
+
+            .col:last-child {
+                h2 {
+                    font-size: 3.5rem;
+                }
+                .testimonial {
+                    bottom: -90%;
+                    transform: translateY(-10%);
+                  }
+              
+            }
+
+            .card {
+                border: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 996px) {
+    .testimonials {
+        .row {
+            .col:last-child {
+                .testimonial {
+                    transform: translateY(0%);
+                    
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .testimonials {
+        .row {
+            grid-template-columns: 1fr;
+
+            .card {
+                .d-flex {
+                    width: 100%;
+                }
+            }
+
+            .testimonial {
+                &.active{
+                    transform: translateY(-60%)!important;
+                }
+                
+                
+            }
+        }
+    }
+}
+
+@media (max-width: 567px) {
+    .testimonials {
+        .row {
+            .col:last-child {
+                h2 {
+                    font-size: 2.5rem;
+                }
+            }
+        }
+    }
+}
